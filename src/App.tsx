@@ -1,7 +1,7 @@
 import * as React from "react";
 import "./App.css";
-import { GetMyCatMessage } from "example.grpc.proto/cat_pb";
-import { CatClient } from "example.grpc.proto/cat_pb_service";
+import { GetMyCatMessage } from "./proto/cat_pb";
+import { CatClient } from "./proto/cat_pb_service";
 
 const apiHost = process.env.REACT_APP_API_HOST;
 const apiPort = process.env.REACT_APP_API_PORT;

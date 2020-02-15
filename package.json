@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@craco/craco": "^5.6.3",
     "@improbable-eng/grpc-web": "^0.12.0",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
@@ -11,7 +12,7 @@
     "@types/node": "^12.0.0",
     "@types/react": "^16.9.0",
     "@types/react-dom": "^16.9.0",
-    "example.grpc.proto": "git+https://github.com/wakuwaku3/example.grpc.proto.git",
+    "grpc-web": "^1.0.7",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "react-scripts": "3.3.1",
@@ -19,10 +20,11 @@
     "typescript": "~3.7.2"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "start": "craco start",
+    "build": "craco build",
+    "test": "craco test",
+    "eject": "craco eject",
+    "postinstall": "wget https://raw.githubusercontent.com/wakuwaku3/example.grpc.go.api/v0.0.1/cat.proto -O ./proto/cat.proto && protoc --plugin='protoc-gen-ts=./node_modules/.bin/protoc-gen-ts' --js_out='import_style=commonjs,binary:./src/' --ts_out='service=grpc-web:./src/' ./proto/cat.proto"
   },
   "eslintConfig": {
     "extends": "react-app"
