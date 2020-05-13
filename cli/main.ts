@@ -17,19 +17,20 @@ metadata.add("auth", "xxx");
 
 const exec = async () => {
   const promise = new Promise<MyCatResponse>((resolve, reject) => {
-    const res = client.getMyCat(req, metadata, (err, res) => {
-      if (err) {
-        reject(err);
-        return;
+    client.getMyCat(
+      req,
+      metadata,
+      { deadline: Date.now() + 60 * 1000 },
+      (err, res) => {
+        if (err) {
+          console.info("failure!");
+          reject(err);
+          return;
+        }
+        console.info("success!");
+        resolve(res);
       }
-      resolve(res);
-    });
-    client.waitForReady(Date.now() + 300 * 1000, (err) => {
-      if (err) {
-        res.cancel();
-        reject(err);
-      }
-    });
+    );
   });
 
   try {
@@ -51,3 +52,4 @@ const exec = async () => {
 };
 
 exec();
+setTimeout(exec, 10 * 1000);
