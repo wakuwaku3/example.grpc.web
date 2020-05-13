@@ -21,7 +21,6 @@ const App: React.FC = () => {
       setKind(ret.getKind());
     });
   }, [name]);
-  requestService();
   const onChange = React.useCallback(
     (e: React.ChangeEvent<HTMLSelectElement>) => {
       const name = e.currentTarget.value;
@@ -30,6 +29,7 @@ const App: React.FC = () => {
     },
     [requestService]
   );
+  React.useState(requestService);
   return (
     <div className="App">
       <header className="App-header">

@@ -15,6 +15,6 @@
     "noEmit": true,
     "jsx": "react"
   },
-  "exclude": ["src/proto/*"],
+  "exclude": ["src/proto/*", "cli/*"],
   "include": ["src"]
 }
