@@ -10,7 +10,7 @@ const api = `http://${apiHost}:${apiPort}`;
 const App: React.FC = () => {
   const [name, setName] = React.useState("tama");
   const [kind, setKind] = React.useState("");
-  const requestService = React.useCallback(() => {
+  const requestService = React.useEffect(() => {
     const request = new GetMyCatMessage();
     request.setTargetCat(name);
     const client = new CatClient(api, {});
@@ -25,9 +25,8 @@ const App: React.FC = () => {
     (e: React.ChangeEvent<HTMLSelectElement>) => {
       const name = e.currentTarget.value;
       setName(name);
-      requestService();
     },
-    [requestService]
+    []
   );
   React.useState(requestService);
   return (
